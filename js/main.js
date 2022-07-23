@@ -1,28 +1,37 @@
-const array = [2, 4, 7, 5, 4, 3, 8];
-
-const result = array.filter(function (x, i, self) {
-  return self.indexOf(x) === i;
+//ドロワーメニュー
+const target = document.getElementById("menu");
+target.addEventListener('click', () => {
+  target.classList.toggle('open');
+  const nav = document.getElementById('header_nav2');
+  header_nav2.classList.toggle('in');
 });
 
-console.log(result);
+//scrollTop
+function scrollTop(elem) {
+  const target = document.getElementById(elem);
+  target.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  });
+}
 
-function LeapYear(year){
-  if( (year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
-    return true;
+scrollTop("button");
+
+
+// modal
+const openBtn = document.getElementById("openBtn");
+const closeBtn = document.getElementById("closeBtn");
+const modal = document.getElementById("modal");
+openBtn.addEventListener("click", () => {
+  modal.style.display = "block";
+});
+closeBtn.addEventListener("click", () => {
+  modal.style.display = "none";
+});
+window.addEventListener("click", (e) => {
+  if (!e.target.closest(".modal__content-inner") && e.target.id !== "openBtn") {
+    modal.style.display = "none";
   }
-  return false;
-}
-
-let checkYear1 = 2020;
-if(LeapYear(checkYear1)){
-  console.log(checkYear1 + '年はうるう年です');
-}else{
-  console.log(checkYear1 + '年はうるう年ではありません');
-}
-
-let checkYear2 = 2021;
-if(LeapYear(checkYear2)){
-  console.log(checkYear2 + '年はうるう年です');
-}else{
-  console.log(checkYear2 + '年はうるう年ではありません');
-}
+});
